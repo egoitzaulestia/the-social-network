@@ -7,7 +7,7 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
-  const { name, email, password, confirmPassword } = formData;
+  const { name, email, age, password, confirmPassword } = formData;
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -27,9 +27,22 @@ const Register = () => {
         <br />
         <input
           type="text"
+          id="name"
           placeholder="name"
           name="name"
           value={name}
+          onChange={handleOnChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="age">Age</label>
+        <br />
+        <input
+          type="number"
+          id="age"
+          placeholder="age"
+          name="age"
+          value={age} // Uncomment and manage age state if needed
           onChange={handleOnChange}
         />
       </div>
@@ -39,6 +52,7 @@ const Register = () => {
         <br />
         <input
           type="email"
+          id="email"
           placeholder="email"
           name="email"
           value={email}
@@ -50,6 +64,7 @@ const Register = () => {
         <br />
         <input
           type="password"
+          id="password"
           placeholder="password"
           value={password}
           onChange={handleOnChange}
@@ -61,6 +76,7 @@ const Register = () => {
         <br />
         <input
           type="password"
+          id="confirmPassword"
           placeholder="confirm password"
           name="confirmPassword"
           value={confirmPassword}
