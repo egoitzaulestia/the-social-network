@@ -1,7 +1,24 @@
 import { useState } from "react";
 
 const Register = () => {
-  const [formData, setFormData] = useState({ name: "", email: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const { name, email, password, confirmPassword } = formData;
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    console.log(`${name}: ${value}`);
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const handleOnSumbit = (e) => {
+    e.preventDefault();
+    console.log(`formData: ${formData}`);
+  };
 
   return (
     <form onSubmit={handleOnSumbit}>
