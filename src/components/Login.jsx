@@ -12,8 +12,14 @@ const Login = () => {
     console.log(`${name}: ${value}`);
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
+
+  const handleOnSumbit = (e) => {
+    e.preventDefault();
+    console.log(`formData: ${formData}`);
+  };
+
   return (
-    <form>
+    <form onSubmit={handleOnSumbit}>
       <div>
         <label htmlFor="email">Email</label>
         <br />
@@ -39,6 +45,7 @@ const Login = () => {
           onChange={handleOnChange}
         />
       </div>
+      <button type="submit">Login</button>
     </form>
   );
 };

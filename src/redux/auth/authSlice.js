@@ -8,7 +8,7 @@ const initialState = {
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async (userData) => {
-    console.log("Registering user with data:", userData);
+    console.log("from store", userData);
 
     //   async (userData, thunkAPI) => {
     //     try {
