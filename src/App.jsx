@@ -1,13 +1,13 @@
 import "./App.css";
-import Register from "./components/Register";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   BrowserRouter,
 } from "react-router-dom";
-import Login from "./components/Login";
-import ConfirmEmail from "./components/ConfirmEmail";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import ConfirmEmail from "./pages/ConfirmEmail";
 
 function App() {
   return (
