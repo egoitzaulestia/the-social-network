@@ -22,39 +22,43 @@ const Register = () => {
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleOnSumbit = (e) => {
+  const handleOnSumbit = async (e) => {
     e.preventDefault();
     const numAge = Number(age); // We convert age to a number for comparison
 
-    if (password !== confirmPassword) {
+    if (password !== confirmPassword)
       return api.error({
         message: "Error",
         description: "Passwords do not match",
       });
-    } else if (password.length < 6) {
+    if (password.length < 6)
       return api.error({
         message: "Error",
         description: "Password must be at least 6 characters",
       });
-    } else if (!name || !email || !age) {
+    if (!name || !email || !age)
       return api.error({
         message: "Error",
         description: "Please fill in all fields",
       });
-    } else if (numAge < 18) {
+    if (numAge < 18)
       return api.error({
         message: "Error",
-        description: "You must be at least 18 years old to register",
+        description: "You must be at least 18 to register",
       });
-    } else {
+
+    try {
+      const payload = await dispatch(registerUser(formData)).unwrap(); // throws on reject
       api.success({
         message: "Success",
-        description:
-          "Registration successful! Please check your email to confirm your account.",
+        description: `Welcome ${payload.user.name}! Check your email to confirm.`,
+      });
+    } catch (err) {
+      api.error({
+        message: "Registration failed",
+        description: String(err || "Please try again."),
       });
     }
-    console.log(`formData: ${formData}`);
-    dispatch(registerUser(formData));
   };
 
   return (
