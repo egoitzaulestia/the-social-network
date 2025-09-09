@@ -5,6 +5,7 @@ import { notification } from "antd";
 
 const Register = () => {
   const dispatch = useDispatch();
+  const [api, contextHolder] = notification.useNotification();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -23,28 +24,30 @@ const Register = () => {
 
   const handleOnSumbit = (e) => {
     e.preventDefault();
+    const numAge = Number(age); // We convert age to a number for comparison
+
     if (password !== confirmPassword) {
-      return notification.error({
+      return api.error({
         message: "Error",
         description: "Passwords do not match",
       });
     } else if (password.length < 6) {
-      return notification.error({
+      return api.error({
         message: "Error",
         description: "Password must be at least 6 characters",
       });
     } else if (!name || !email || !age) {
-      return notification.error({
+      return api.error({
         message: "Error",
         description: "Please fill in all fields",
       });
-    } else if (age < 18) {
-      return notification.error({
+    } else if (numAge < 18) {
+      return api.error({
         message: "Error",
         description: "You must be at least 18 years old to register",
       });
     } else {
-      notification.success({
+      api.success({
         message: "Success",
         description:
           "Registration successful! Please check your email to confirm your account.",
@@ -55,72 +58,75 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={handleOnSumbit}>
-      <div>
-        <label htmlFor="name">Name</label>
-        <br />
-        <input
-          type="text"
-          id="name"
-          placeholder="name"
-          name="name"
-          value={name}
-          onChange={handleOnChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="age">Age</label>
-        <br />
-        <input
-          type="number"
-          id="age"
-          placeholder="age"
-          name="age"
-          value={age} // Uncomment and manage age state if needed
-          onChange={handleOnChange}
-        />
-      </div>
+    <>
+      {contextHolder}
+      <form onSubmit={handleOnSumbit}>
+        <div>
+          <label htmlFor="name">Name</label>
+          <br />
+          <input
+            type="text"
+            id="name"
+            placeholder="name"
+            name="name"
+            value={name}
+            onChange={handleOnChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="age">Age</label>
+          <br />
+          <input
+            type="number"
+            id="age"
+            placeholder="age"
+            name="age"
+            value={age} // Uncomment and manage age state if needed
+            onChange={handleOnChange}
+          />
+        </div>
 
-      <div>
-        <label htmlFor="email">Email</label>
-        <br />
-        <input
-          type="email"
-          id="email"
-          placeholder="email"
-          name="email"
-          value={email}
-          onChange={handleOnChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <br />
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="password"
-          value={password}
-          onChange={handleOnChange}
-        />
-      </div>
+        <div>
+          <label htmlFor="email">Email</label>
+          <br />
+          <input
+            type="email"
+            id="email"
+            placeholder="email"
+            name="email"
+            value={email}
+            onChange={handleOnChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <br />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="password"
+            value={password}
+            onChange={handleOnChange}
+          />
+        </div>
 
-      <div>
-        <label htmlFor="confirmPassword">Confirm Password</label>
-        <br />
-        <input
-          type="password"
-          id="confirmPassword"
-          placeholder="confirm password"
-          name="confirmPassword"
-          value={confirmPassword}
-          onChange={handleOnChange}
-        />
-      </div>
+        <div>
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <br />
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="confirm password"
+            name="confirmPassword"
+            value={confirmPassword}
+            onChange={handleOnChange}
+          />
+        </div>
 
-      <button type="submit">Register</button>
-    </form>
+        <button type="submit">Register</button>
+      </form>
+    </>
   );
 };
 

@@ -4,6 +4,8 @@ import "./index.css";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.js";
+import "@ant-design/v5-patch-for-react-19";
+// import "antd/dist/reset.css"; // styles reset
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
