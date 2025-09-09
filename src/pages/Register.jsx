@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../redux/auth/authSlice";
+import { notification } from "antd";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,33 @@ const Register = () => {
 
   const handleOnSumbit = (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      return notification.error({
+        message: "Error",
+        description: "Passwords do not match",
+      });
+    } else if (password.length < 6) {
+      return notification.error({
+        message: "Error",
+        description: "Password must be at least 6 characters",
+      });
+    } else if (!name || !email || !age) {
+      return notification.error({
+        message: "Error",
+        description: "Please fill in all fields",
+      });
+    } else if (age < 18) {
+      return notification.error({
+        message: "Error",
+        description: "You must be at least 18 years old to register",
+      });
+    } else {
+      notification.success({
+        message: "Success",
+        description:
+          "Registration successful! Please check your email to confirm your account.",
+      });
+    }
     console.log(`formData: ${formData}`);
     dispatch(registerUser(formData));
   };
