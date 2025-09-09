@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { loginUser } from "../redux/auth/authSlice";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,6 +20,7 @@ const Login = () => {
   const handleOnSumbit = (e) => {
     e.preventDefault();
     console.log(`formData:`, formData);
+    dispatch(loginUser(formData));
   };
 
   return (
