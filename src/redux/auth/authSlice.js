@@ -18,6 +18,8 @@ export const registerUser = createAsyncThunk(
     } catch (error) {
       console.error(error);
     }
+
+    console.error("from store", userData);
     //   async (userData, thunkAPI) => {
     //     try {
     //       const response = await fetch("http://localhost:4000/api/register", {

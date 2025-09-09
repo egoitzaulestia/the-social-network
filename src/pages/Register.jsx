@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { registerUser } from "../redux/auth/authSlice";
 
 const Register = () => {
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -11,8 +13,6 @@ const Register = () => {
     confirmPassword: "",
   });
   const { name, email, age, password, confirmPassword } = formData;
-
-  const dispatch = useDispatch();
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -71,6 +71,7 @@ const Register = () => {
         <input
           type="password"
           id="password"
+          name="password"
           placeholder="password"
           value={password}
           onChange={handleOnChange}
