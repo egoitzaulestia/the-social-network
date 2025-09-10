@@ -13,13 +13,13 @@ const Login = () => {
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-    console.log(`${name}: ${value}`);
+    // console.log(`${name}: ${value}`);
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleOnSumbit = (e) => {
     e.preventDefault();
-    console.log(`formData:`, formData);
+    // console.log(`formData:`, formData);
     dispatch(loginUser(formData));
   };
 
