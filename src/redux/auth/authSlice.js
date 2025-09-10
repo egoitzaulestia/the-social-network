@@ -70,6 +70,10 @@ export const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.user = null;
+        state.token = null;
       });
   },
 });
