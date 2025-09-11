@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../redux/auth/authSlice";
 import { notification } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [api, contextHolder] = notification.useNotification();
 
@@ -53,6 +55,9 @@ const Register = () => {
         message: "Success",
         description: `Welcome ${payload.user.name}! Check your email to confirm.`,
       });
+      setTimeout(() => {
+        navigate("/confirm-email");
+      }, 2000);
     } catch (err) {
       api.error({
         message: "Registration failed",

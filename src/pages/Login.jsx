@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { loginUser } from "../redux/auth/authSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: "",
@@ -21,6 +23,9 @@ const Login = () => {
     e.preventDefault();
     // console.log(`formData:`, formData);
     dispatch(loginUser(formData));
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
   };
 
   return (

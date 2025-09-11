@@ -30,10 +30,16 @@ const logout = async () => {
   return response.data;
 };
 
+const confirmEmail = async (token) => {
+  const { data } = await api.get(`/users/confirm/${token}`);
+  return data;
+};
+
 const authService = {
   register,
   login,
   logout,
+  confirmEmail,
 };
 
 export default authService;
