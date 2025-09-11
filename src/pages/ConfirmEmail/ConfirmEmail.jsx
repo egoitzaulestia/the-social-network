@@ -1,7 +1,7 @@
 // src/pages/ConfirmEmail.jsx
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import authService from "../redux/auth/authService";
+import authService from "../../redux/auth/authService";
 
 const ConfirmEmail = () => {
   const { token } = useParams(); // present on /confirm/:token

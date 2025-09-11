@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { registerUser } from "../redux/auth/authSlice";
+import { registerUser } from "../../redux/auth/authSlice";
 import { notification } from "antd";
 import { useNavigate } from "react-router-dom";
 
