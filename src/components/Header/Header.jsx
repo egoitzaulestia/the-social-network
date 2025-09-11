@@ -6,7 +6,7 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state) => state.auth);
+  const { token } = useSelector((state) => state.auth);
 
   const handleOnLogout = (e) => {
     e.preventDefault();
@@ -16,7 +16,7 @@ const Header = () => {
   return (
     <nav>
       <h1>Header</h1>
-      {user ? (
+      {token ? (
         <button onClick={handleOnLogout}>Logout</button>
       ) : (
         <>
