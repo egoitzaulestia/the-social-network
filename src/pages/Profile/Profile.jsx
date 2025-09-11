@@ -8,7 +8,7 @@ const Profile = () => {
       <h1>Profile</h1>
       <p>{user && user.name}</p>
       <p>{user && user.email}</p>
-      <img src={user && user.photoUrl} alt="user avatar" width="100" />
+      {/* <img src={user && user.photoUrl} alt="user avatar" width="100" /> */}
       <p>{user && user.createdAt}</p>
     </>
   );
