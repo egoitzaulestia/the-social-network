@@ -1,9 +1,8 @@
-# The Social Network
+# The Social Network — (still ongoing project)
 
 Front-end for an ongoing class project: a simple social network with user authentication and email confirmation. The app is built with React, Redux Toolkit, React Router, Vite, Ant Design, and Axios.
 
 - Backend API (deployed): https://mongoose-backend-project.onrender.com
-
 
 ## Tech stack
 
@@ -12,8 +11,7 @@ Front-end for an ongoing class project: a simple social network with user authen
 - React Router DOM 7 for routing
 - Ant Design 5 (with `@ant-design/v5-patch-for-react-19`)
 - Axios for HTTP requests
-- Sass (optional styling)
-
+- Sass (soon...)
 
 ## Features
 
@@ -26,7 +24,6 @@ Front-end for an ongoing class project: a simple social network with user authen
   - Sends `Authorization: Bearer <token>` on logout
 - Basic profile view that reads the authenticated user from the Redux store
 - Navigation updates based on auth state (Header)
-
 
 ## Project structure (simplified)
 
@@ -49,7 +46,6 @@ src/
   App.jsx              # Routes
   main.jsx             # App bootstrap (Redux Provider)
 ```
-
 
 ## Getting started
 
@@ -107,7 +103,6 @@ npm run preview
 npm run lint
 ```
 
-
 ## Routing
 
 Declared in `src/App.jsx`:
@@ -118,18 +113,16 @@ Declared in `src/App.jsx`:
 - `/confirm-email` → Instructions to check your email
 - `/confirm/:token` → Confirms email via token
 
-
 ## API integration
 
 Defined in `src/redux/auth/authService.js` using Axios. The following endpoints are used by the front-end:
 
 - `POST /users/register` — creates a new user
 - `POST /users/login` — authenticates a user; stores `{ user, token }` in `localStorage`
-- `DELETE /users/logout` — logs out the current user (requires `Authorization: Bearer <token>`) 
+- `DELETE /users/logout` — logs out the current user (requires `Authorization: Bearer <token>`)
 - `GET /users/confirm/:token` — confirms email
 
 The API base URL is configured via `VITE_API_BASE`. If not set, it falls back to `http://localhost:3000`.
-
 
 ## Auth flow (front-end)
 
@@ -146,7 +139,6 @@ The API base URL is configured via `VITE_API_BASE`. If not set, it falls back to
    - Sends `DELETE /users/logout` with `Authorization: Bearer <token>`.
    - Clears `localStorage` and returns to unauthenticated state.
 
-
 ## Scripts
 
 From `package.json`:
@@ -156,14 +148,11 @@ From `package.json`:
 - `npm run lint` — run eslint
 - `npm run preview` — preview the production build
 
-
 ## Notes
 
 - This is an ongoing student project. Expect active changes and improvements.
 - If the backend is down or sleeping (free tier), the first request may take a few seconds to spin up.
 
-
 ## Backend
 
 - Deployed API base: https://mongoose-backend-project.onrender.com
-
