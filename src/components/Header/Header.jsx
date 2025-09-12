@@ -15,10 +15,9 @@ const Header = () => {
   };
   return (
     <nav>
-      <h1>Header</h1>
+      <Link to="/">Home</Link>
       {token ? (
         <>
-          <Link to="/">Home</Link>
           <Link to="/profile">Profile</Link>
           <button onClick={handleOnLogout}>Logout</button>
         </>
