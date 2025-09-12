@@ -10,6 +10,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import ConfirmEmail from "./pages/ConfirmEmail/ConfirmEmail";
 import Header from "./components/Header/Header";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
           <Route path="/confirm-email" element={<ConfirmEmail />} />
           {/* does the call */}
           <Route path="/confirm/:token" element={<ConfirmEmail />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<h1>404 NOT FOUND</h1>} />
         </Routes>
       </BrowserRouter>
     </div>
