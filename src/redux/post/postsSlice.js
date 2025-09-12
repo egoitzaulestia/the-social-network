@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import postService from "./postService";
+import postService from "./postsService";
 
 const initialState = {
   posts: [],
@@ -28,7 +28,7 @@ export const getAllPostsInfo = createAsyncThunk(
 );
 
 export const postSlice = createSlice({
-  name: "post",
+  name: "posts",
   initialState,
   reducers: {
     reset: (state) => {
