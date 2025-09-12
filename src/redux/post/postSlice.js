@@ -58,4 +58,5 @@ export const postSlice = createSlice({
 });
 
 export const { reset } = postSlice.actions;
+
 export default postSlice.reducer;
