@@ -11,7 +11,7 @@ const Header = () => {
   const handleOnLogout = (e) => {
     e.preventDefault();
     dispatch(logoutUser());
-    navigate("/login");
+    navigate("/");
   };
   return (
     <nav>
