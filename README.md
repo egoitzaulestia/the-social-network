@@ -1,31 +1,38 @@
-# The Social Network — (still ongoing project)
+# The Social Network 🌐
 
-Front-end for an ongoing class project: a simple social network with user authentication and email confirmation. The app is built with React, Redux Toolkit, React Router, Vite, Ant Design, and Axios.
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=flat&logo=vercel)](https://the-social-network-two.vercel.app/)
+[![React](https://img.shields.io/badge/React-19-blue?style=flat&logo=react)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-7-646CFF?style=flat&logo=vite)](https://vitejs.dev/)
+[![Redux Toolkit](https://img.shields.io/badge/Redux%20Toolkit-2-764ABC?style=flat&logo=redux)](https://redux-toolkit.js.org/)
 
-- Backend API (deployed): https://mongoose-backend-project.onrender.com
+> 🚧 **Ongoing class project** — A modern social network built with React and friends
 
-## Tech stack
+**🌍 Live Demo:** https://the-social-network-two.vercel.app/
 
-- React 19 + Vite 7
-- Redux Toolkit 2 for state management
-- React Router DOM 7 for routing
-- Ant Design 5 (with `@ant-design/v5-patch-for-react-19`)
-- Axios for HTTP requests
-- Sass (soon...)
+**🔗 Backend API:** https://mongoose-backend-project.onrender.com
 
-## Features
+## ⚡ Tech Stack
 
-- User registration with client-side validation (name, email, age ≥ 18, password rules)
-- Email confirmation flow
+- **⚛️ React 19** + **⚡ Vite 7** — Fast development and modern React features
+- **🗂️ Redux Toolkit 2** — Predictable state management
+- **🧭 React Router DOM 7** — Client-side routing
+- **🎨 Ant Design 5** — Beautiful UI components (with React 19 patch)
+- **📡 Axios** — HTTP client for API calls
+- **💅 Sass** — Enhanced CSS (coming soon...)
+
+## ✨ Features
+
+- **👤 User Registration** — Client-side validation (name, email, age ≥ 18, password rules)
+- **📧 Email Confirmation Flow**
   - Instruction screen after registering (`/confirm-email`)
   - Token confirmation route (`/confirm/:token`)
-- Login and Logout
+- **🔐 Authentication System**
   - Stores `user` and `token` in `localStorage`
   - Sends `Authorization: Bearer <token>` on logout
-- Basic profile view that reads the authenticated user from the Redux store
-- Navigation updates based on auth state (Header)
+- **👨‍💼 Profile View** — Displays authenticated user data from Redux store
+- **🧭 Smart Navigation** — Header updates based on authentication state
 
-## Project structure (simplified)
+## 📁 Project Structure
 
 ```
 src/
@@ -47,9 +54,9 @@ src/
   main.jsx             # App bootstrap (Redux Provider)
 ```
 
-## Getting started
+## 🚀 Getting Started
 
-### Prerequisites
+### 📋 Prerequisites
 
 - Node.js ≥ 18 (recommend using `nvm`)
 
@@ -58,13 +65,13 @@ nvm install 20
 nvm use 20
 ```
 
-### Install dependencies
+### 📦 Install Dependencies
 
 ```bash
 npm install
 ```
 
-### Environment variables
+### 🌍 Environment Variables
 
 This project uses Vite env variables (must be prefixed with `VITE_`).
 
@@ -77,7 +84,7 @@ Example `.env`:
 VITE_API_BASE=https://mongoose-backend-project.onrender.com
 ```
 
-### Run the app in development
+### 🔥 Run Development Server
 
 ```bash
 npm run dev
@@ -85,74 +92,79 @@ npm run dev
 
 Vite will print a local URL to open in your browser.
 
-### Build for production
+### 📦 Build for Production
 
 ```bash
 npm run build
 ```
 
-### Preview the production build locally
+### 👀 Preview Production Build
 
 ```bash
 npm run preview
 ```
 
-### Lint
+### 🔍 Lint Code
 
 ```bash
 npm run lint
 ```
 
-## Routing
+## 🗺️ Routing
 
 Declared in `src/App.jsx`:
 
-- `/` → Home
-- `/login` → Login
-- `/register` → Register
-- `/confirm-email` → Instructions to check your email
-- `/confirm/:token` → Confirms email via token
+- `🏠 /` → Home
+- `🔑 /login` → Login
+- `📝 /register` → Register
+- `📧 /confirm-email` → Instructions to check your email
+- `✅ /confirm/:token` → Confirms email via token
 
-## API integration
+## 🔌 API Integration
 
-Defined in `src/redux/auth/authService.js` using Axios. The following endpoints are used by the front-end:
+Defined in `src/redux/auth/authService.js` using Axios. The following endpoints are used by the frontend:
 
-- `POST /users/register` — creates a new user
-- `POST /users/login` — authenticates a user; stores `{ user, token }` in `localStorage`
-- `DELETE /users/logout` — logs out the current user (requires `Authorization: Bearer <token>`)
-- `GET /users/confirm/:token` — confirms email
+- **📝 `POST /users/register`** — Creates a new user
+- **🔑 `POST /users/login`** — Authenticates a user; stores `{ user, token }` in `localStorage`
+- **🚪 `DELETE /users/logout`** — Logs out the current user (requires `Authorization: Bearer <token>`)
+- **✅ `GET /users/confirm/:token`** — Confirms email
 
 The API base URL is configured via `VITE_API_BASE`. If not set, it falls back to `http://localhost:3000`.
 
-## Auth flow (front-end)
+## 🔐 Authentication Flow
 
-1. Register
-   - Client-side checks: required fields, password length (≥ 6), age (≥ 18), matching passwords.
-   - On success, the UI navigates to `/confirm-email`.
-2. Confirm email
-   - Follow the link sent by the backend to `/confirm/:token`.
-   - The page calls the confirm endpoint and shows success or error.
-3. Login
-   - Stores `user` and `token` in `localStorage`.
-   - Header switches to authenticated links.
-4. Logout
-   - Sends `DELETE /users/logout` with `Authorization: Bearer <token>`.
-   - Clears `localStorage` and returns to unauthenticated state.
+1. **📝 Register**
+   - Client-side checks: required fields, password length (≥ 6), age (≥ 18), matching passwords
+   - On success, the UI navigates to `/confirm-email`
+2. **📧 Confirm Email**
+   - Follow the link sent by the backend to `/confirm/:token`
+   - The page calls the confirm endpoint and shows success or error
+3. **🔑 Login**
+   - Stores `user` and `token` in `localStorage`
+   - Header switches to authenticated links
+4. **🚪 Logout**
+   - Sends `DELETE /users/logout` with `Authorization: Bearer <token>`
+   - Clears `localStorage` and returns to unauthenticated state
 
-## Scripts
+## 📋 Available Scripts
 
 From `package.json`:
 
-- `npm run dev` — start Vite dev server
-- `npm run build` — production build
-- `npm run lint` — run eslint
-- `npm run preview` — preview the production build
+- **🔥 `npm run dev`** — Start Vite dev server
+- **📦 `npm run build`** — Production build
+- **🔍 `npm run lint`** — Run ESLint
+- **👀 `npm run preview`** — Preview the production build
 
-## Notes
+## 📝 Notes
 
-- This is an ongoing student project. Expect active changes and improvements.
-- If the backend is down or sleeping (free tier), the first request may take a few seconds to spin up.
+- 🚧 This is an ongoing student project. Expect active changes and improvements.
+- ⏰ If the backend is down or sleeping (free tier), the first request may take a few seconds to spin up.
 
-## Backend
+## 🔗 Links
 
-- Deployed API base: https://mongoose-backend-project.onrender.com
+- **🌍 Frontend (Vercel):** https://the-social-network-two.vercel.app/
+- **🚀 Backend API (Render):** https://mongoose-backend-project.onrender.com
+
+---
+
+*Made with ❤️ for learning purposes*
