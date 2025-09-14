@@ -5,14 +5,16 @@ import { getAllPostsInfo } from "../../redux/posts/postsSlice";
 
 const Posts = () => {
   const dispatch = useDispatch();
-  const { posts, status, error } = useSelector((store) => store.posts);
+  const { posts, isLoading, isError, message } = useSelector(
+    (store) => store.posts
+  );
 
   useEffect(() => {
     dispatch(getAllPostsInfo());
   }, [dispatch]);
 
-  if (status === "loading") return <p>Loading…</p>;
-  if (status === "failed") return <p>Error: {error}</p>;
+  if (isLoading) return <p>Loading…</p>;
+  if (isError) return <p>Error: {message}</p>;
   if (!posts?.length) return <p>No posts available</p>;
 
   return (

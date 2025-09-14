@@ -1,13 +1,13 @@
 const API_BASE = import.meta.env.VITE_API_BASE || "";
 
-function absUrl(url) {
+const absUrl = (url) => {
   if (!url) return "";
   if (url.startsWith("http") || url.startsWith("data:")) return url;
   // ensure single slash between base and path
   const base = API_BASE.replace(/\/+$/, "");
   const path = url.replace(/^\/+/, "");
   return `${base}/${path}`;
-}
+};
 
 const Post = ({ post }) => {
   const cover = post?.imageUrls?.[0] ? absUrl(post.imageUrls[0]) : "";
