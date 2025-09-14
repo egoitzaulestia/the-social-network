@@ -1,17 +1,3 @@
-// import React from "react";
-
-// const Post = (post) => {
-//   return (
-//     <>
-//       <h2>{post.title} </h2>
-//     </>
-//   );
-// };
-
-// export default Post;
-
-import React from "react";
-
 const API_BASE = import.meta.env.VITE_API_BASE || "";
 
 function absUrl(url) {
