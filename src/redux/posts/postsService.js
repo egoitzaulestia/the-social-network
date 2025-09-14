@@ -5,7 +5,7 @@ const api = axios.create({ baseURL: API_BASE });
 
 const getAllPostsInfo = async () => {
   const { data } = await api.get("/posts/full");
-  return data;
+  return data.posts; // Return the data.posts
 };
 
 const postService = {
