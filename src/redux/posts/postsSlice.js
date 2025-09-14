@@ -9,11 +9,11 @@ const initialState = {
   message: "",
 };
 
-// Get all posts info
 export const getAllPostsInfo = createAsyncThunk(
   "posts/getAllPostsInfo",
   async (_, thunkAPI) => {
     try {
+      // MUST return an array here (see service below)
       return await postService.getAllPostsInfo();
     } catch (error) {
       const message =
@@ -42,15 +42,19 @@ export const postSlice = createSlice({
     builder
       .addCase(getAllPostsInfo.pending, (state) => {
         state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
+        state.message = "";
       })
       .addCase(getAllPostsInfo.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.posts = action.payload;
+        state.posts = action.payload ?? [];
       })
       .addCase(getAllPostsInfo.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
+        state.isSuccess = false;
         state.message = action.payload;
         state.posts = [];
       });
@@ -58,5 +62,4 @@ export const postSlice = createSlice({
 });
 
 export const { reset } = postSlice.actions;
-
 export default postSlice.reducer;
