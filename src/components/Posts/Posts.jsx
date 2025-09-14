@@ -1,10 +1,11 @@
 import Post from "../Post/Post";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllPostsInfo } from "../../redux/posts/postsSlice";
 
 const Posts = () => {
   const dispatch = useDispatch();
+  const { posts } = useSelector((store) => store.posts);
 
   useEffect(() => {
     dispatch(getAllPostsInfo());
@@ -12,8 +13,20 @@ const Posts = () => {
 
   return (
     <>
-      <h1>Posts</h1>
-      <Post />
+      {posts && posts.length === 0 ? (
+        <p>No posts available</p>
+      ) : (
+        posts && posts.map((post) => <Post key={post._id} post={post} />)
+      )}{" "}
+      ;
+      {posts &&
+        posts.map((post) => (
+          <div key={post._id}>
+            <h2>{post.title}</h2>
+            <p>{post.content}</p>
+            <hr />
+          </div>
+        ))}
     </>
   );
 };
