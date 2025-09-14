@@ -31,6 +31,12 @@
   - Sends `Authorization: Bearer <token>` on logout
 - **👨‍💼 Profile View** — Displays authenticated user data from Redux store
 - **🧭 Smart Navigation** — Header updates based on authentication state
+- **📝 Posts System**
+  - View all posts on the home page with pagination support
+  - Post display includes title, content, author name, and creation date
+  - **🖼️ Image Gallery** — Multiple images per post in responsive grid layout
+  - Loading states, error handling, and empty state management
+  - Automatic image fallback for broken/missing images
 
 ## 📁 Project Structure
 
@@ -39,8 +45,12 @@ src/
   components/
     Header/
       Header.jsx
+    Posts/
+      Posts.jsx        # Posts list container component
+    Post/
+      Post.jsx         # Individual post display with images
   pages/
-    Home/Home.jsx
+    Home/Home.jsx      # Main page displaying Posts component
     Login/Login.jsx
     Register/Register.jsx
     Profile/Profile.jsx
@@ -49,7 +59,12 @@ src/
     auth/
       authService.js   # API calls (register, login, logout, confirm)
       authSlice.js     # Redux slice + thunks
+    posts/
+      postsService.js  # API calls (getAllPostsInfo with pagination)
+      postsSlice.js    # Redux slice + thunks for posts
     store.js
+  config/
+    api.js             # API base URL and URL helper functions
   App.jsx              # Routes
   main.jsx             # App bootstrap (Redux Provider)
 ```
@@ -114,20 +129,31 @@ npm run lint
 
 Declared in `src/App.jsx`:
 
-- `🏠 /` → Home
+- `🏠 /` → Home (displays all posts)
 - `🔑 /login` → Login
 - `📝 /register` → Register
 - `📧 /confirm-email` → Instructions to check your email
 - `✅ /confirm/:token` → Confirms email via token
+- `👨‍💼 /profile` → User profile page
 
 ## 🔌 API Integration
 
-Defined in `src/redux/auth/authService.js` using Axios. The following endpoints are used by the frontend:
+The frontend integrates with the backend API using Axios. Services are defined in Redux service files:
+
+### 👤 Authentication Endpoints (`src/redux/auth/authService.js`)
 
 - **📝 `POST /users/register`** — Creates a new user
 - **🔑 `POST /users/login`** — Authenticates a user; stores `{ user, token }` in `localStorage`
 - **🚪 `DELETE /users/logout`** — Logs out the current user (requires `Authorization: Bearer <token>`)
 - **✅ `GET /users/confirm/:token`** — Confirms email
+
+### 📝 Posts Endpoints (`src/redux/posts/postsService.js`)
+
+- **📖 `GET /posts/full`** — Fetches all posts with full details including:
+  - Post content (title, body, creation date)
+  - Author information (name)
+  - Multiple image URLs
+  - Supports pagination via `page` and `limit` query parameters
 
 The API base URL is configured via `VITE_API_BASE`. If not set, it falls back to `http://localhost:3000`.
 
@@ -145,6 +171,44 @@ The API base URL is configured via `VITE_API_BASE`. If not set, it falls back to
 4. **🚪 Logout**
    - Sends `DELETE /users/logout` with `Authorization: Bearer <token>`
    - Clears `localStorage` and returns to unauthenticated state
+
+## 📝 Posts System
+
+The posts functionality is built with Redux Toolkit and provides a complete viewing experience:
+
+### 🏗️ Architecture
+
+- **Redux State Management**: Posts are managed via `postsSlice.js` with typical async states (loading, success, error)
+- **Service Layer**: `postsService.js` handles API communication with the backend
+- **Component Architecture**: 
+  - `Posts.jsx` — Container component that fetches and lists all posts
+  - `Post.jsx` — Individual post renderer with image gallery support
+
+### 🎯 Features
+
+1. **📖 Posts Display**
+   - Automatic loading on home page visit
+   - Shows post title, content, author name, and creation date
+   - Responsive design that adapts to different screen sizes
+
+2. **🖼️ Image Handling**
+   - Support for multiple images per post
+   - Responsive grid layout (auto-fill, min 180px columns)
+   - Automatic URL conversion from relative to absolute paths
+   - Graceful fallback for broken/missing images
+   - Lazy loading for performance optimization
+
+3. **⚡ State Management**
+   - Loading indicators while fetching posts
+   - Error state display with helpful messages
+   - Empty state handling when no posts are available
+   - State reset functionality for cleanup
+
+4. **🔄 Data Flow**
+   - Posts fetched automatically when `Posts` component mounts
+   - Uses Redux `useSelector` to access posts state
+   - Dispatches `getAllPostsInfo` thunk via `useDispatch`
+   - Backend pagination support (configurable page/limit parameters)
 
 ## 📋 Available Scripts
 
