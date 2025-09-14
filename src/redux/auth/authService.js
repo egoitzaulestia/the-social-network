@@ -1,6 +1,6 @@
 import axios from "axios";
+import { API_BASE } from "../../config/api.js";
 
-const API_BASE = import.meta.env.VITE_API_BASE ?? "http://localhost:3000";
 const api = axios.create({ baseURL: API_BASE });
 
 const register = async (userData) => {
