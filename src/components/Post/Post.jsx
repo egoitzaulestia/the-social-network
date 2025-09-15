@@ -1,4 +1,5 @@
 import { absUrl } from "../../config/api.js";
+import { Link } from "react-router-dom";
 
 const imgStyle = {
   width: "180px",
@@ -22,6 +23,8 @@ const Post = ({ post }) => {
     <article style={{ marginBottom: 32, textAlign: "center" }}>
       <h2>{post?.title}</h2>
       <p style={{ maxWidth: 900, margin: "0 auto 8px" }}>{post?.content}</p>
+
+      <Link to={`/post/${post?._id}`}>Read more</Link>
 
       {images.length > 0 && (
         <div style={gridStyle}>
@@ -49,6 +52,7 @@ const Post = ({ post }) => {
         </div>
       )}
 
+      <p>Likes: {post?.likes?.length ?? 0}</p>
       <p>Author: {post?.author?.name ?? "Unknown"}</p>
       <p>
         Created At:{" "}
