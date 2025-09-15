@@ -28,6 +28,23 @@ export const getAllPostsInfo = createAsyncThunk(
   }
 );
 
+export const getPostById = createAsyncThunk(
+  "posts/getPostById",
+  async (id, thunkAPI) => {
+    try {
+      return await postService.getPostById(id);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const postSlice = createSlice({
   name: "posts",
   initialState,
@@ -41,6 +58,7 @@ export const postSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // GET ALL POSTS FULL INFO
       .addCase(getAllPostsInfo.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
@@ -58,6 +76,26 @@ export const postSlice = createSlice({
         state.isSuccess = false;
         state.message = action.payload;
         state.posts = [];
+      })
+
+      // GET POST BY ID
+      .addCase(getPostById.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
+        state.message = "";
+      })
+      .addCase(getPostById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.post = action.payload ?? {};
+      })
+      .addCase(getPostById.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.payload;
+        state.post = {};
       });
   },
 });
