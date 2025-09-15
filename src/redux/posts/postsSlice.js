@@ -3,6 +3,7 @@ import postService from "./postsService";
 
 const initialState = {
   posts: [],
+  post: {},
   isError: false,
   isSuccess: false,
   isLoading: false,
