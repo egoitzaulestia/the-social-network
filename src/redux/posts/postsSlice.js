@@ -3,7 +3,7 @@ import postService from "./postsService";
 
 const initialState = {
   posts: [],
-  post: {},
+  post: null,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -50,15 +50,17 @@ export const postSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      state.isLoading = false;
       state.isSuccess = false;
       state.isError = false;
       state.message = "";
     },
+    clearPost: (state) => {
+      state.post = null;
+    },
   },
   extraReducers: (builder) => {
     builder
-      // GET ALL POSTS FULL INFO
+      // LIST ALL POSTS
       .addCase(getAllPostsInfo.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
@@ -78,27 +80,28 @@ export const postSlice = createSlice({
         state.posts = [];
       })
 
-      // GET POST BY ID
+      // DETAIL / GET POST BY ID
       .addCase(getPostById.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
         state.isSuccess = false;
         state.message = "";
+        state.post = null;
       })
       .addCase(getPostById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.post = action.payload ?? {};
+        state.post = action.payload ?? null;
       })
       .addCase(getPostById.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
         state.message = action.payload;
-        state.post = {};
+        state.post = null;
       });
   },
 });
 
-export const { reset } = postSlice.actions;
+export const { reset, clearPost } = postSlice.actions;
 export default postSlice.reducer;
