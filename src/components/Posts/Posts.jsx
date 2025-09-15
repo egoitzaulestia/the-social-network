@@ -1,7 +1,7 @@
 import Post from "../Post/Post";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getAllPostsInfo } from "../../redux/posts/postsSlice";
+import { getAllPostsInfo, reset } from "../../redux/posts/postsSlice";
 
 const Posts = () => {
   const dispatch = useDispatch();
@@ -10,7 +10,11 @@ const Posts = () => {
   );
 
   useEffect(() => {
-    dispatch(getAllPostsInfo());
+    const fetcAllPosts = async () => {
+      dispatch(getAllPostsInfo());
+      dispatch(reset());
+    };
+    fetcAllPosts();
   }, [dispatch]);
 
   if (isLoading) return <p>Loading…</p>;
