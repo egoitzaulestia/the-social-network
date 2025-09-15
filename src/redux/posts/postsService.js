@@ -11,7 +11,7 @@ const getAllPostsInfo = async (page = 1, limit = 10) => {
 };
 
 const getPostById = async (id) => {
-  const { data } = await api.get(`/posts/${id}`);
+  const { data } = await api.get(`/posts/id/${id}`);
   return data.post; // Return the data.post
 };
 
