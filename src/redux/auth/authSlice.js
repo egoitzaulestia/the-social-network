@@ -52,6 +52,10 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {},
+  reset: (state) => {
+    state.status = "idle";
+    state.error = null;
+  },
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, (state) => {
