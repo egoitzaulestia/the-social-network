@@ -12,7 +12,8 @@ const getAllPostsInfo = async (page = 1, limit = 10) => {
 
 const getPostById = async (id) => {
   const { data } = await api.get(`/posts/id/${id}`);
-  return data.post; // Return the data.post
+  // Backend returns the post object directly (not wrapped in { post })
+  return data;
 };
 
 const postService = {
