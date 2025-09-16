@@ -16,7 +16,7 @@ const gridStyle = {
   margin: "12px 0",
 };
 
-const Post = ({ post }) => {
+const Post = ({ post, showReadMore = true, authorNameOverride }) => {
   const images = Array.isArray(post?.imageUrls) ? post.imageUrls : [];
 
   return (
@@ -24,7 +24,7 @@ const Post = ({ post }) => {
       <h2>{post?.title}</h2>
       <p style={{ maxWidth: 900, margin: "0 auto 8px" }}>{post?.content}</p>
 
-      <Link to={`/post/${post?._id}`}>Read more</Link>
+      {showReadMore && <Link to={`/post/${post?._id}`}>Read more</Link>}
 
       {images.length > 0 && (
         <div style={gridStyle}>
@@ -53,12 +53,12 @@ const Post = ({ post }) => {
       )}
 
       <p>Likes: {post?.likes?.length ?? 0}</p>
-      <p>Author: {post?.author?.name ?? "Unknown"}</p>
+      <p>Author: {authorNameOverride ?? post?.author?.name ?? "Unknown"}</p>
       <p>
         Created At:{" "}
         {post?.createdAt ? new Date(post.createdAt).toLocaleString() : "-"}
       </p>
-      <hr />
+      {/* <hr /> */}
     </article>
   );
 };

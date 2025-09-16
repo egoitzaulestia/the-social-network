@@ -22,7 +22,7 @@ const Posts = () => {
   if (!posts?.length) return <p>No posts available</p>;
 
   return (
-    <>{posts && posts.map((post) => <Post key={post._id} post={post} />)}</>
+    <>{posts && posts.map((post) => <><Post key={post._id} post={post} /> <hr /><br/></>)}</>
   );
 };
 
