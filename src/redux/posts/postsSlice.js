@@ -116,6 +116,27 @@ export const postSlice = createSlice({
         state.isSuccess = false;
         state.message = action.payload;
         state.post = null;
+      })
+
+      // SEARCH POSTS BY TITLE
+      .addCase(getPostByTitle.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
+        state.message = "";
+        state.posts = [];
+      })
+      .addCase(getPostByTitle.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.posts = action.payload ?? [];
+      })
+      .addCase(getPostByTitle.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.payload;
+        state.posts = [];
       });
   },
 });
