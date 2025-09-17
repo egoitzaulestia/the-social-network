@@ -28,6 +28,7 @@ function App() {
           <Route path="/confirm/:token" element={<ConfirmEmail />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/post/:id" element={<PostDetail />} />
+          <Route path="/search/:postName" element={<Home />} />
           <Route path="*" element={<h1>404 NOT FOUND</h1>} />
         </Routes>
       </BrowserRouter>
