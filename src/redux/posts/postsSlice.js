@@ -45,6 +45,23 @@ export const getPostById = createAsyncThunk(
   }
 );
 
+export const getPostByTitle = createAsyncThunk(
+  "posts/getPostByTitle",
+  async (postTitle, thunkAPI) => {
+    try {
+      return await postService.getPostByTitle(postTitle);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const postSlice = createSlice({
   name: "posts",
   initialState,
