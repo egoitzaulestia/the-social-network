@@ -17,7 +17,7 @@ const getPostById = async (id) => {
 };
 
 const getPostByTitle = async (postTitle) => {
-  const { data } = await api.get(`/posts/search/${postTitle}`);
+  const { data } = await api.get(`/posts/title/${postTitle}`);
   // Backend returns an array of posts matching the title
   return data; // Assuming data is an array of posts
 };
