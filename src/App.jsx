@@ -12,6 +12,7 @@ import ConfirmEmail from "./pages/ConfirmEmail/ConfirmEmail";
 import Header from "./components/Header/Header";
 import Profile from "./pages/Profile/Profile";
 import PostDetail from "./components/PostDetail/PostDetail";
+import Search from "./components/Search/Search";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
           <Route path="/confirm/:token" element={<ConfirmEmail />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/post/:id" element={<PostDetail />} />
-          <Route path="/search/:postName" element={<Home />} />
+          <Route path="/search/:postName" element={<Search />} />
           <Route path="*" element={<h1>404 NOT FOUND</h1>} />
         </Routes>
       </BrowserRouter>
