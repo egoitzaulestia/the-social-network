@@ -29,13 +29,6 @@ const Search = () => {
     <>
       <h1>Search</h1>
       <p>Searching for: {postName}</p>
-      {/* {posts.map((post) => (
-        <div key={post._id}>
-          <h2>{post.title}</h2>
-          <p>{post.content}</p>
-          <hr />
-        </div>
-      ))} */}
 
       {posts &&
         posts.map((post) => (
