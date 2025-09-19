@@ -34,8 +34,8 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header__container">
-        {/* Logo positioned outside the nav section */}
-        <div className="header__logo">
+        {/* Box 1: Logo */}
+        <div className="header__box header__box--logo">
           <Link to="/" className="header__logo-link">
             <img 
               src={logo} 
@@ -45,20 +45,19 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Nav section with borders containing search and navigation */}
-        <div className="header__nav-section">
-          {/* Search */}
-          <div className="header__search">
-            <input
-              onKeyUp={handleChange}
-              type="text"
-              placeholder="Search..."
-              name="search"
-              className="header__search-input"
-            />
-          </div>
+        {/* Box 2: Search */}
+        <div className="header__box header__box--search">
+          <input
+            onKeyUp={handleChange}
+            type="text"
+            placeholder="Search..."
+            name="search"
+            className="header__search-input"
+          />
+        </div>
 
-          {/* Navigation */}
+        {/* Box 3: Navigation */}
+        <div className="header__box header__box--nav">
           <nav className="header__nav">
             <Link 
               to="/" 
