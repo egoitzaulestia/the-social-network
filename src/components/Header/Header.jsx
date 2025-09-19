@@ -33,8 +33,8 @@ const Header = () => {
 
   return (
     <header className="header">
-      {/* Left section with logo */}
-      <div className="header__left">
+      <div className="header__container">
+        {/* Logo positioned outside the nav section */}
         <div className="header__logo">
           <Link to="/" className="header__logo-link">
             <img 
@@ -44,63 +44,62 @@ const Header = () => {
             />
           </Link>
         </div>
-      </div>
 
-      {/* Center section with search */}
-      <div className="header__center">
-        <div className="header__search">
-          <input
-            onKeyUp={handleChange}
-            type="text"
-            placeholder="Search..."
-            name="search"
-            className="header__search-input"
-          />
+        {/* Nav section with borders containing search and navigation */}
+        <div className="header__nav-section">
+          {/* Search */}
+          <div className="header__search">
+            <input
+              onKeyUp={handleChange}
+              type="text"
+              placeholder="Search..."
+              name="search"
+              className="header__search-input"
+            />
+          </div>
+
+          {/* Navigation */}
+          <nav className="header__nav">
+            <Link 
+              to="/" 
+              className={`header__nav-link ${isActiveLink('/') ? 'header__nav-link--active' : ''}`}
+            >
+              Home
+            </Link>
+
+            {token ? (
+              <>
+                <Link 
+                  to="/profile" 
+                  className={`header__nav-link ${isActiveLink('/profile') ? 'header__nav-link--active' : ''}`}
+                >
+                  Profile
+                </Link>
+                <button 
+                  onClick={handleOnLogout}
+                  className="header__button header__button--secondary"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link 
+                  to="/login" 
+                  className={`header__nav-link ${isActiveLink('/login') ? 'header__nav-link--active' : ''}`}
+                >
+                  Login
+                </Link>
+                <Link 
+                  to="/register" 
+                  className="header__button header__button--primary"
+                >
+                  Register
+                </Link>
+              </>
+            )}
+          </nav>
         </div>
-      </div>
-
-      {/* Right section with navigation */}
-      <div className="header__right">
-        <nav className="header__nav">
-          <Link 
-            to="/" 
-            className={`header__nav-link ${isActiveLink('/') ? 'header__nav-link--active' : ''}`}
-          >
-            Home
-          </Link>
-
-          {token ? (
-            <>
-              <Link 
-                to="/profile" 
-                className={`header__nav-link ${isActiveLink('/profile') ? 'header__nav-link--active' : ''}`}
-              >
-                Profile
-              </Link>
-              <button 
-                onClick={handleOnLogout}
-                className="header__button header__button--secondary"
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link 
-                to="/login" 
-                className={`header__nav-link ${isActiveLink('/login') ? 'header__nav-link--active' : ''}`}
-              >
-                Login
-              </Link>
-              <Link 
-                to="/register" 
-                className="header__button header__button--primary"
-              >
-                Register
-              </Link>
-            </>
-          )}
-        </nav>
       </div>
     </header>
   );

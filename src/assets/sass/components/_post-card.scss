@@ -1,0 +1,192 @@
+// Post Card Component - Modern Retro Style
+.post-card {
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: 3px;
+  margin-bottom: $spacing-lg;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
+
+  // Card header with title
+  &__header {
+    padding: $spacing-md $spacing-lg;
+    border-bottom: 1px solid $color-gray-medium;
+    background: $color-gray-light;
+  }
+
+  &__title {
+    font-size: 13px;
+    font-weight: $font-weight-bold;
+    color: $color-facebook-blue;
+    margin: 0;
+    text-align: left;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // Card content
+  &__content {
+    padding: $spacing-md $spacing-lg;
+  }
+
+  &__text {
+    font-size: 11px;
+    line-height: 1.4;
+    color: $color-text-primary;
+    margin: 0 0 $spacing-md 0;
+    text-align: left;
+  }
+
+  // Image grid
+  &__images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+    margin: $spacing-md 0;
+    justify-items: center;
+
+    @include mobile {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 6px;
+    }
+  }
+
+  &__image {
+    width: 160px;
+    height: 107px; // 3:2 aspect ratio
+    object-fit: cover;
+    border-radius: 2px;
+    border: 1px solid $color-gray-medium;
+    transition: transform $transition-fast;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+
+    @include mobile {
+      width: 120px;
+      height: 80px;
+    }
+  }
+
+  // Card footer with meta info
+  &__footer {
+    padding: $spacing-sm $spacing-lg;
+    border-top: 1px solid $color-gray-medium;
+    background: $color-gray-light;
+    @include flex-between;
+    font-size: 10px;
+    color: $color-text-secondary;
+
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-xs;
+    }
+  }
+
+  &__meta {
+    @include flex-start;
+    gap: $spacing-md;
+
+    @include mobile {
+      flex-wrap: wrap;
+      gap: $spacing-sm;
+    }
+  }
+
+  &__meta-item {
+    @include flex-start;
+    gap: 4px;
+    font-size: 10px;
+    color: $color-text-secondary;
+  }
+
+  &__icon {
+    width: 12px;
+    height: 12px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  &__author {
+    font-weight: $font-weight-medium;
+    color: $color-facebook-blue;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__date {
+    color: $color-text-secondary;
+  }
+
+  // Read more link
+  &__read-more {
+    color: $color-facebook-blue;
+    font-size: 11px;
+    text-decoration: none;
+    font-weight: $font-weight-medium;
+    margin-top: $spacing-sm;
+    display: inline-block;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // Like button/counter
+  &__likes {
+    @include flex-start;
+    gap: 4px;
+    color: $color-text-secondary;
+    font-size: 10px;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 2px;
+    transition: background-color $transition-fast;
+
+    &:hover {
+      background-color: rgba($color-facebook-blue, 0.1);
+      color: $color-facebook-blue;
+    }
+
+    &--liked {
+      color: $color-facebook-blue;
+    }
+  }
+
+  // Loading states
+  &--loading {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  // Error state
+  &--error {
+    border-color: #ff6b6b;
+    background-color: #fff5f5;
+  }
+}
+
+// Container for multiple posts
+.posts-feed {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+
+  @include mobile {
+    padding: $spacing-md;
+  }
+}
+
+// Remove default hr styling between posts
+.posts-feed hr {
+  display: none;
+}

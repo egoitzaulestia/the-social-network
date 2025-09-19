@@ -22,16 +22,12 @@ const Posts = () => {
   if (!posts?.length) return <p>No posts available</p>;
 
   return (
-    <>
+    <div className="posts-feed">
       {posts &&
         posts.map((post) => (
-          <div key={post._id}>
-            <Post post={post} />
-            <hr />
-            <br />
-          </div>
+          <Post key={post._id} post={post} />
         ))}
-    </>
+    </div>
   );
 };
 

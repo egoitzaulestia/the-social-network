@@ -2,11 +2,11 @@
 
 // Main content wrapper - account for fixed header
 .main-content {
-  padding-top: 42px; // Header height
+  padding-top: 50px; // Header height
   min-height: 100vh;
   
   @include mobile {
-    padding-top: 44px; // Mobile header height
+    padding-top: 52px; // Mobile header height
   }
 }
 

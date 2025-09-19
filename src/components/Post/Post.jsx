@@ -1,64 +1,97 @@
 import { absUrl } from "../../config/api.js";
 import { Link } from "react-router-dom";
-
-const imgStyle = {
-  width: "180px",
-  height: "120px",
-  objectFit: "cover",
-  borderRadius: "10px",
-};
-
-const gridStyle = {
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-  gap: "12px",
-  justifyItems: "center",
-  margin: "12px 0",
-};
+import { HeartIcon, UserIcon, ClockIcon } from "../Icons/Icons.jsx";
+import "../../assets/sass/main.scss";
 
 const Post = ({ post, showReadMore = true, authorNameOverride }) => {
   const images = Array.isArray(post?.imageUrls) ? post.imageUrls : [];
+  
+  // Format date to be more concise
+  const formatDate = (dateString) => {
+    if (!dateString) return "-";
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffTime = Math.abs(now - date);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays === 1) return "1 day ago";
+    if (diffDays < 7) return `${diffDays} days ago`;
+    
+    return date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: date.getFullYear() !== now.getFullYear() ? 'numeric' : undefined
+    });
+  };
 
   return (
-    <article style={{ marginBottom: 32, textAlign: "center" }}>
-      <h2>{post?.title}</h2>
-      <p style={{ maxWidth: 900, margin: "0 auto 8px" }}>{post?.content}</p>
+    <article className="post-card">
+      {/* Card Header */}
+      <div className="post-card__header">
+        <Link to={`/post/${post?._id}`} className="post-card__title">
+          {post?.title}
+        </Link>
+      </div>
 
-      {showReadMore && <Link to={`/post/${post?._id}`}>Read more</Link>}
+      {/* Card Content */}
+      <div className="post-card__content">
+        <p className="post-card__text">{post?.content}</p>
 
-      {images.length > 0 && (
-        <div style={gridStyle}>
-          {images.map((u, i) => {
-            const src = absUrl(u);
-            return (
-              <img
-                key={`${post._id}-img-${i}`}
-                src={src}
-                alt={
-                  post?.title ? `${post.title} (${i + 1})` : `image ${i + 1}`
-                }
-                style={imgStyle}
-                loading="lazy"
-                onError={(e) => {
-                  // show a tiny transparent pixel if missing (avoid broken icon)
-                  e.currentTarget.src =
-                    "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-                  e.currentTarget.alt = "image not found";
-                }}
-                referrerPolicy="no-referrer"
-              />
-            );
-          })}
+        {showReadMore && (
+          <Link to={`/post/${post?._id}`} className="post-card__read-more">
+            Read more
+          </Link>
+        )}
+
+        {/* Images */}
+        {images.length > 0 && (
+          <div className="post-card__images">
+            {images.map((u, i) => {
+              const src = absUrl(u);
+              return (
+                <img
+                  key={`${post._id}-img-${i}`}
+                  src={src}
+                  alt={post?.title ? `${post.title} (${i + 1})` : `image ${i + 1}`}
+                  className="post-card__image"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.src =
+                      "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+                    e.currentTarget.alt = "image not found";
+                  }}
+                  referrerPolicy="no-referrer"
+                />
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* Card Footer */}
+      <div className="post-card__footer">
+        <div className="post-card__meta">
+          {/* Likes */}
+          <div className="post-card__likes">
+            <HeartIcon className="post-card__icon" />
+            <span>{post?.likes?.length ?? 0}</span>
+          </div>
+
+          {/* Author */}
+          <div className="post-card__meta-item">
+            <UserIcon className="post-card__icon" />
+            <span className="post-card__author">
+              {authorNameOverride ?? post?.author?.name ?? "Unknown"}
+            </span>
+          </div>
         </div>
-      )}
 
-      <p>Likes: {post?.likes?.length ?? 0}</p>
-      <p>Author: {authorNameOverride ?? post?.author?.name ?? "Unknown"}</p>
-      <p>
-        Created At:{" "}
-        {post?.createdAt ? new Date(post.createdAt).toLocaleString() : "-"}
-      </p>
-      {/* <hr /> */}
+        {/* Date */}
+        <div className="post-card__meta-item">
+          <ClockIcon className="post-card__icon" />
+          <span className="post-card__date">{formatDate(post?.createdAt)}</span>
+        </div>
+      </div>
     </article>
   );
 };

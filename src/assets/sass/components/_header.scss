@@ -1,41 +1,67 @@
-// Header Component - BEM Methodology - Classic Facebook Style
+// Header Component - BEM Methodology - Classic Facebook Style with Logo Outside Lines
 .header {
-  @include flex-between;
-  background: linear-gradient(to bottom, $color-facebook-blue-light, $color-facebook-blue);
-  box-shadow: 
-    0 1px 3px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  padding: $spacing-sm $spacing-lg;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
   z-index: $z-index-header;
-  border-bottom: 1px solid $color-facebook-blue-dark;
-  height: 42px;
-  min-height: 42px;
+  background: linear-gradient(to bottom, $color-facebook-blue-light, $color-facebook-blue);
   font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
   margin: 0;
-
+  height: 50px;
+  
   @include mobile {
-    padding: $spacing-xs $spacing-md;
-    height: 44px;
+    height: 52px;
   }
 
-  // Left section with logo
-  &__left {
-    @include flex-start;
-    gap: $spacing-md;
+  // Main container for the header content
+  &__container {
+    position: relative;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-lg;
 
     @include mobile {
-      gap: $spacing-sm;
+      padding: 0 $spacing-md;
     }
   }
 
-  // Logo container
+  // The bordered section that contains search and navigation
+  &__nav-section {
+    position: absolute;
+    top: 8px;
+    left: 60px; // Space for logo
+    right: $spacing-lg;
+    height: 34px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    @include flex-between;
+    align-items: center;
+    padding: 0 $spacing-md;
+    background: rgba(255, 255, 255, 0.05);
+
+    @include mobile {
+      left: 50px;
+      right: $spacing-md;
+      top: 9px;
+      height: 32px;
+      padding: 0 $spacing-sm;
+    }
+  }
+
+  // Logo container - positioned outside the nav section
   &__logo {
-    @include flex-center;
+    position: absolute;
+    top: 50%;
+    left: $spacing-lg;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    @include mobile {
+      left: $spacing-md;
+    }
     
     &-link {
       @include link-reset;
@@ -48,46 +74,34 @@
     }
 
     &-image {
-      height: 28px;
+      height: 22px;
       width: auto;
       filter: brightness(0) invert(1); // Makes the logo white
 
       @include mobile {
-        height: 24px;
+        height: 20px;
       }
     }
   }
 
-  // Center section with search
-  &__center {
+  // Search section - left side of nav section
+  &__search {
     flex: 1;
-    max-width: 500px;
-    margin: 0 $spacing-md;
+    max-width: 400px;
 
     @include mobile {
-      max-width: 200px;
-      margin: 0 $spacing-sm;
+      max-width: 180px;
     }
-
-    @include tablet {
-      max-width: 300px;
-    }
-  }
-
-  // Search container
-  &__search {
-    position: relative;
-    width: 100%;
 
     &-input {
       width: 100%;
       padding: 4px 8px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.4);
       border-radius: 3px;
       background-color: rgba(255, 255, 255, 0.9);
       font-size: 11px;
       color: $color-text-primary;
-      height: 22px;
+      height: 20px;
       transition: all $transition-fast;
 
       &::placeholder {
@@ -103,28 +117,18 @@
       }
 
       @include mobile {
-        font-size: 12px;
+        font-size: 10px;
         padding: 3px 6px;
-        height: 20px;
+        height: 18px;
         
         &::placeholder {
-          font-size: 12px;
+          font-size: 10px;
         }
       }
     }
   }
 
-  // Right section with navigation
-  &__right {
-    @include flex-start;
-    gap: 8px;
-
-    @include mobile {
-      gap: 4px;
-    }
-  }
-
-  // Navigation container
+  // Navigation container - right side of nav section
   &__nav {
     @include flex-start;
     gap: 6px;
@@ -268,3 +272,4 @@
     height: 1.75rem;
   }
 }
+
