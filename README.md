@@ -5,7 +5,7 @@
 [![Vite](https://img.shields.io/badge/Vite-7-646CFF?style=flat&logo=vite)](https://vitejs.dev/)
 [![Redux Toolkit](https://img.shields.io/badge/Redux%20Toolkit-2-764ABC?style=flat&logo=redux)](https://redux-toolkit.js.org/)
 
-> 🚧 **Ongoing class project** — A modern social network built with React and friends
+> 🚧 **Ongoing class project** — A retro social network built with React and friends
 
 **🌍 Live Demo:** https://the-social-network-two.vercel.app/
 
