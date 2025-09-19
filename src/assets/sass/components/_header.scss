@@ -1,0 +1,232 @@
+// Header Component - BEM Methodology
+.header {
+  @include flex-between;
+  background-color: $color-white;
+  box-shadow: $shadow-md;
+  padding: $spacing-md $spacing-lg;
+  position: sticky;
+  top: 0;
+  z-index: $z-index-header;
+  border-bottom: 1px solid $color-gray-medium;
+
+  @include mobile {
+    padding: $spacing-sm $spacing-md;
+  }
+
+  // Left section with logo
+  &__left {
+    @include flex-start;
+    gap: $spacing-lg;
+
+    @include mobile {
+      gap: $spacing-md;
+    }
+  }
+
+  // Logo container
+  &__logo {
+    @include flex-center;
+    
+    &-link {
+      @include link-reset;
+      @include flex-center;
+      @include hover-effect(1.02);
+    }
+
+    &-image {
+      height: 2.5rem;
+      width: auto;
+
+      @include mobile {
+        height: 2rem;
+      }
+    }
+  }
+
+  // Center section with search
+  &__center {
+    flex: 1;
+    max-width: 600px;
+    margin: 0 $spacing-lg;
+
+    @include mobile {
+      display: none;
+    }
+
+    @include tablet {
+      max-width: 400px;
+      margin: 0 $spacing-md;
+    }
+  }
+
+  // Search container
+  &__search {
+    position: relative;
+    width: 100%;
+
+    &-input {
+      width: 100%;
+      padding: $spacing-sm $spacing-md;
+      border: 1px solid $color-gray-medium;
+      border-radius: $border-radius-lg;
+      background-color: $color-gray-light;
+      font-size: 0.9rem;
+      transition: all $transition-fast;
+
+      &::placeholder {
+        color: $color-text-secondary;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $color-primary;
+        background-color: $color-white;
+        box-shadow: 0 0 0 2px rgba($color-primary, 0.1);
+      }
+    }
+  }
+
+  // Right section with navigation
+  &__right {
+    @include flex-start;
+    gap: $spacing-md;
+
+    @include mobile {
+      gap: $spacing-sm;
+    }
+  }
+
+  // Navigation container
+  &__nav {
+    @include flex-start;
+    gap: $spacing-md;
+
+    @include mobile {
+      gap: $spacing-sm;
+    }
+  }
+
+  // Navigation link
+  &__nav-link {
+    @include link-reset;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $border-radius-md;
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+    transition: all $transition-fast;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: $color-gray-light;
+      color: $color-primary;
+    }
+
+    &--active {
+      background-color: $color-primary;
+      color: $color-white;
+
+      &:hover {
+        background-color: $color-primary-dark;
+        color: $color-white;
+      }
+    }
+
+    @include mobile {
+      padding: $spacing-xs $spacing-sm;
+      font-size: 0.875rem;
+    }
+  }
+
+  // Button styles
+  &__button {
+    @include button-reset;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $border-radius-md;
+    font-weight: $font-weight-medium;
+    transition: all $transition-fast;
+    white-space: nowrap;
+
+    &--primary {
+      background-color: $color-primary;
+      color: $color-white;
+
+      &:hover {
+        background-color: $color-primary-dark;
+      }
+    }
+
+    &--secondary {
+      background-color: $color-gray-light;
+      color: $color-text-primary;
+
+      &:hover {
+        background-color: $color-gray-medium;
+      }
+    }
+
+    @include mobile {
+      padding: $spacing-xs $spacing-sm;
+      font-size: 0.875rem;
+    }
+  }
+
+  // Mobile menu toggle (for future use)
+  &__menu-toggle {
+    @include button-reset;
+    @include flex-center;
+    display: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: $border-radius-md;
+    background-color: $color-gray-light;
+    
+    @include mobile {
+      display: flex;
+    }
+
+    &:hover {
+      background-color: $color-gray-medium;
+    }
+  }
+
+  // Mobile search (for future implementation)
+  &__mobile-search {
+    display: none;
+    
+    @include mobile {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: $color-white;
+      border-bottom: 1px solid $color-gray-medium;
+      padding: $spacing-md;
+      box-shadow: $shadow-md;
+    }
+
+    &--open {
+      @include mobile {
+        display: block;
+      }
+    }
+  }
+}
+
+// User avatar (if needed for future)
+.user-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid $color-gray-medium;
+  transition: border-color $transition-fast;
+
+  &:hover {
+    border-color: $color-primary;
+  }
+
+  @include mobile {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}

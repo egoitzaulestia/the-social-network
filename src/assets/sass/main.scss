@@ -1,0 +1,16 @@
+// Main SCSS file - imports all styles
+
+// Utils (must be imported first)
+@import 'utils/variables';
+@import 'utils/mixins';
+
+// Base styles
+// @import 'base/reset';
+// @import 'base/typography';
+
+// Components
+@import 'components/header';
+
+// Pages
+// @import 'pages/home';
+// @import 'pages/login';
