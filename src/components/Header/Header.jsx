@@ -52,7 +52,7 @@ const Header = () => {
           <input
             onKeyUp={handleChange}
             type="text"
-            placeholder="Search posts, people, and more..."
+            placeholder="Search..."
             name="search"
             className="header__search-input"
           />

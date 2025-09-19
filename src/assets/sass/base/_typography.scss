@@ -1,0 +1,29 @@
+// Typography - Classic Facebook Style
+body {
+  font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
+  font-size: 11px;
+  line-height: 1.28;
+  color: $color-text-primary;
+  background-color: $color-white;
+  margin: 0;
+  padding: 0;
+}
+
+// Classic Facebook font sizes
+.fb-text {
+  &--small {
+    font-size: 10px;
+  }
+  
+  &--normal {
+    font-size: 11px;
+  }
+  
+  &--medium {
+    font-size: 12px;
+  }
+  
+  &--large {
+    font-size: 13px;
+  }
+}

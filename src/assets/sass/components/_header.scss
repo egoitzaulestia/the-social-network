@@ -1,25 +1,31 @@
-// Header Component - BEM Methodology
+// Header Component - BEM Methodology - Classic Facebook Style
 .header {
   @include flex-between;
-  background-color: $color-white;
-  box-shadow: $shadow-md;
-  padding: $spacing-md $spacing-lg;
+  background: linear-gradient(to bottom, $color-facebook-blue-light, $color-facebook-blue);
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: $spacing-sm $spacing-lg;
   position: sticky;
   top: 0;
   z-index: $z-index-header;
-  border-bottom: 1px solid $color-gray-medium;
+  border-bottom: 1px solid $color-facebook-blue-dark;
+  height: 42px;
+  min-height: 42px;
+  font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
 
   @include mobile {
-    padding: $spacing-sm $spacing-md;
+    padding: $spacing-xs $spacing-md;
+    height: 44px;
   }
 
   // Left section with logo
   &__left {
     @include flex-start;
-    gap: $spacing-lg;
+    gap: $spacing-md;
 
     @include mobile {
-      gap: $spacing-md;
+      gap: $spacing-sm;
     }
   }
 
@@ -30,15 +36,20 @@
     &-link {
       @include link-reset;
       @include flex-center;
-      @include hover-effect(1.02);
+      transition: opacity $transition-fast;
+      
+      &:hover {
+        opacity: 0.8;
+      }
     }
 
     &-image {
-      height: 2.5rem;
+      height: 28px;
       width: auto;
+      filter: brightness(0) invert(1); // Makes the logo white
 
       @include mobile {
-        height: 2rem;
+        height: 24px;
       }
     }
   }
@@ -46,16 +57,16 @@
   // Center section with search
   &__center {
     flex: 1;
-    max-width: 600px;
-    margin: 0 $spacing-lg;
+    max-width: 500px;
+    margin: 0 $spacing-md;
 
     @include mobile {
-      display: none;
+      max-width: 200px;
+      margin: 0 $spacing-sm;
     }
 
     @include tablet {
-      max-width: 400px;
-      margin: 0 $spacing-md;
+      max-width: 300px;
     }
   }
 
@@ -66,22 +77,35 @@
 
     &-input {
       width: 100%;
-      padding: $spacing-sm $spacing-md;
-      border: 1px solid $color-gray-medium;
-      border-radius: $border-radius-lg;
-      background-color: $color-gray-light;
-      font-size: 0.9rem;
+      padding: 4px 8px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 3px;
+      background-color: rgba(255, 255, 255, 0.9);
+      font-size: 11px;
+      color: $color-text-primary;
+      height: 22px;
       transition: all $transition-fast;
 
       &::placeholder {
         color: $color-text-secondary;
+        font-size: 11px;
       }
 
       &:focus {
         outline: none;
-        border-color: $color-primary;
         background-color: $color-white;
-        box-shadow: 0 0 0 2px rgba($color-primary, 0.1);
+        border-color: rgba(255, 255, 255, 0.8);
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      @include mobile {
+        font-size: 12px;
+        padding: 3px 6px;
+        height: 20px;
+        
+        &::placeholder {
+          font-size: 12px;
+        }
       }
     }
   }
@@ -89,84 +113,94 @@
   // Right section with navigation
   &__right {
     @include flex-start;
-    gap: $spacing-md;
+    gap: 8px;
 
     @include mobile {
-      gap: $spacing-sm;
+      gap: 4px;
     }
   }
 
   // Navigation container
   &__nav {
     @include flex-start;
-    gap: $spacing-md;
+    gap: 6px;
 
     @include mobile {
-      gap: $spacing-sm;
+      gap: 4px;
     }
   }
 
   // Navigation link
   &__nav-link {
     @include link-reset;
-    padding: $spacing-sm $spacing-md;
-    border-radius: $border-radius-md;
-    font-weight: $font-weight-medium;
-    color: $color-text-primary;
+    padding: 4px 8px;
+    border-radius: 2px;
+    font-weight: $font-weight-normal;
+    color: $color-white;
+    font-size: 11px;
     transition: all $transition-fast;
     white-space: nowrap;
+    text-decoration: none;
 
     &:hover {
-      background-color: $color-gray-light;
-      color: $color-primary;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: $color-white;
     }
 
     &--active {
-      background-color: $color-primary;
+      background-color: rgba(255, 255, 255, 0.2);
       color: $color-white;
+      font-weight: $font-weight-medium;
 
       &:hover {
-        background-color: $color-primary-dark;
+        background-color: rgba(255, 255, 255, 0.25);
         color: $color-white;
       }
     }
 
     @include mobile {
-      padding: $spacing-xs $spacing-sm;
-      font-size: 0.875rem;
+      padding: 3px 6px;
+      font-size: 12px;
     }
   }
 
   // Button styles
   &__button {
     @include button-reset;
-    padding: $spacing-sm $spacing-md;
-    border-radius: $border-radius-md;
-    font-weight: $font-weight-medium;
+    padding: 4px 8px;
+    border-radius: 2px;
+    font-weight: $font-weight-normal;
+    font-size: 11px;
     transition: all $transition-fast;
     white-space: nowrap;
+    text-decoration: none;
+    display: inline-block;
 
     &--primary {
-      background-color: $color-primary;
-      color: $color-white;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: $color-facebook-blue;
+      border: 1px solid rgba(255, 255, 255, 0.8);
 
       &:hover {
-        background-color: $color-primary-dark;
+        background-color: $color-white;
+        color: $color-facebook-blue-dark;
       }
     }
 
     &--secondary {
-      background-color: $color-gray-light;
-      color: $color-text-primary;
+      background-color: transparent;
+      color: $color-white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
 
       &:hover {
-        background-color: $color-gray-medium;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.5);
       }
     }
 
     @include mobile {
-      padding: $spacing-xs $spacing-sm;
-      font-size: 0.875rem;
+      padding: 3px 6px;
+      font-size: 12px;
     }
   }
 

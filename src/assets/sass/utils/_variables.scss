@@ -1,14 +1,18 @@
-// Colors
-$color-primary: #4267b2;
-$color-primary-dark: #365899;
-$color-primary-light: #5578c7;
+// Colors - Classic Facebook Theme
+$color-facebook-blue: #3b5998;
+$color-facebook-blue-dark: #2d4373;
+$color-facebook-blue-light: #4c70ba;
+$color-primary: $color-facebook-blue;
+$color-primary-dark: $color-facebook-blue-dark;
+$color-primary-light: $color-facebook-blue-light;
 $color-white: #ffffff;
 $color-black: #000000;
-$color-gray-light: #f5f6f7;
-$color-gray-medium: #e4e6ea;
-$color-gray-dark: #65676b;
-$color-text-primary: #1c1e21;
-$color-text-secondary: #65676b;
+$color-gray-light: #f7f7f7;
+$color-gray-medium: #e9ebee;
+$color-gray-dark: #90949c;
+$color-text-primary: #1d2129;
+$color-text-secondary: #606770;
+$color-border: #dddfe2;
 
 // Typography
 $font-family-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
