@@ -11,33 +11,37 @@ const Search = () => {
     (store) => store.posts
   );
 
+  // Decode the URL-encoded search term
+  const decodedSearchTerm = postName ? decodeURIComponent(postName) : "";
+
   useEffect(() => {
-    if (postName) {
-      dispatch(getPostByTitle(postName));
+    if (decodedSearchTerm) {
+      dispatch(getPostByTitle(decodedSearchTerm));
     }
 
     return () => {
       dispatch(reset());
     };
-  }, [dispatch, postName]);
+  }, [dispatch, decodedSearchTerm]);
 
   if (isLoading) return <p>Loading…</p>;
   if (isError) return <p>Error: {message}</p>;
-  if (!posts?.length) return <p>No posts found for "{postName}"</p>;
+  if (!posts?.length) return <p>No posts found for "{decodedSearchTerm}"</p>;
 
   return (
     <>
-      <h1>Search</h1>
-      <p>Searching for: {postName}</p>
+      <h1>Search Results</h1>
+      <p>Searching for: "{decodedSearchTerm}"</p>
+      <p>Found {posts.length} post{posts.length !== 1 ? 's' : ''}</p>
 
-      {posts &&
-        posts.map((post) => (
-          <div key={post._id}>
-            <Post post={post} />
-            <hr />
-            <br />
-          </div>
-        ))}
+      <div className="search-results">
+        {posts &&
+          posts.map((post) => (
+            <div key={post._id} className="search-result-item">
+              <Post post={post} />
+            </div>
+          ))}
+      </div>
     </>
   );
 };

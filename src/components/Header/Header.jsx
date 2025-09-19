@@ -19,11 +19,22 @@ const Header = () => {
     navigate("/");
   };
 
-  const handleChange = (e) => {
+  const handleSearchInput = (e) => {
     setSearchTerm(e.target.value);
+  };
+
+  const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      navigate(`/search/${searchTerm}`);
-      console.log(searchTerm);
+      handleSearch();
+    }
+  };
+
+  const handleSearch = () => {
+    if (searchTerm.trim()) {
+      // Encode the search term for URL safety
+      const encodedSearchTerm = encodeURIComponent(searchTerm.trim());
+      navigate(`/search/${encodedSearchTerm}`);
+      console.log("Searching for:", searchTerm);
     }
   };
 
@@ -48,9 +59,11 @@ const Header = () => {
         {/* Box 2: Search */}
         <div className="header__box header__box--search">
           <input
-            onKeyUp={handleChange}
             type="text"
-            placeholder="Search..."
+            value={searchTerm}
+            onChange={handleSearchInput}
+            onKeyPress={handleKeyPress}
+            placeholder="Search posts..."
             name="search"
             className="header__search-input"
           />
