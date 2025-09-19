@@ -1,0 +1,27 @@
+// Layout styles for main app structure
+
+// Main content wrapper - account for fixed header
+.main-content {
+  padding-top: 42px; // Header height
+  min-height: 100vh;
+  
+  @include mobile {
+    padding-top: 44px; // Mobile header height
+  }
+}
+
+// Page wrapper for consistent spacing
+.page-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+  
+  @include mobile {
+    padding: $spacing-md;
+  }
+  
+  @include tablet {
+    padding: $spacing-lg $spacing-md;
+  }
+}

@@ -1,0 +1,86 @@
+// CSS Reset - Remove default browser styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif !important;
+  font-size: 11px !important;
+  line-height: 1.28 !important;
+  color: $color-text-primary !important;
+  background-color: $color-white !important;
+  display: block !important;
+  place-items: initial !important;
+  min-width: auto !important;
+  min-height: auto !important;
+}
+
+#root {
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: none !important;
+  text-align: left !important;
+}
+
+.App {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+// Remove default styles from common elements
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+input, textarea {
+  border: none;
+  outline: none;
+  font: inherit;
+  background: transparent;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
